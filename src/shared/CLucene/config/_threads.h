@@ -7,6 +7,8 @@
 #ifndef _config_threads_h
 #define _config_threads_h
 
+#undef _CL_HAVE_WIN32_THREADS
+
 #ifndef _CL_DISABLE_MULTITHREADING
 	#if defined(_LUCENE_DONTIMPLEMENT_THREADMUTEX)
 		//do nothing
