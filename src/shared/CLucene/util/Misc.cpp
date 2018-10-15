@@ -466,6 +466,8 @@ bool Misc::listFiles(const char* directory, std::vector<std::string>& files, boo
 std::string Misc::toString(const bool value){
   return value ? "true" : "false";
 }
+
+#if !defined(_CL_DISABLE_MULTITHREADING)
 std::string Misc::toString(_LUCENE_THREADID_TYPE value){
   static int32_t nextindex = 0;
   static std::map<_LUCENE_THREADID_TYPE, int32_t> ids;
@@ -474,6 +476,7 @@ std::string Misc::toString(_LUCENE_THREADID_TYPE value){
   }
   return toString(ids[value]);
 }
+#endif
 std::string Misc::toString(const int32_t value){
   char buf[20];
   TCHAR tbuf[20];
