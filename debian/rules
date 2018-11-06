@@ -17,7 +17,8 @@ override_dh_auto_configure:
 	dh_auto_configure -- \
 	-DBUILD_CONTRIBS_LIB=ON \
 	-DLIB_DESTINATION:PATH=/usr/lib/$(DEB_HOST_MULTIARCH) \
-	-DLUCENE_SYS_INCLUDES:PATH=/usr/lib/$(DEB_HOST_MULTIARCH)
+	-DLUCENE_SYS_INCLUDES:PATH=/usr/lib/$(DEB_HOST_MULTIARCH) \
+	-DCMAKE_INSTALL_PREFIX=/usr/
 
 override_dh_makeshlibs:
 	dh_makeshlibs -V
