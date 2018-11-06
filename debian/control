@@ -1,0 +1,72 @@
+Source: clucene-core
+Priority: optional
+Maintainer: Fathi Boudra <fabo@debian.org>
+Uploaders: Daniel Glassey <wdg@debian.org>
+Build-Depends: cmake (>= 2.8.5), debhelper (>= 9), libboost-dev, libz-dev
+Standards-Version: 3.9.8
+Section: libs
+Homepage: http://clucene.sourceforge.net
+
+Package: libclucene-dev
+Section: libdevel
+Architecture: any
+Depends: libc6-dev,
+         libclucene-contribs1v5 (= ${binary:Version}),
+         libclucene-core1v5 (= ${binary:Version}),
+         ${misc:Depends}
+Description: library for full-featured text search engine (development)
+ CLucene is a C++ port of the popular Apache Lucene search engine
+ (http://lucene.apache.org/java). It is released under LGPL or the Apache
+ License.
+ .
+ CLucene aims to be a high-speed alternative to Java Lucene, its API is very
+ similar to that of the Java version. CLucene has recently been brought up to
+ date with Lucene 1.4.3. It contains most of the same functionality as the
+ Java version, except for Socket, Threading and the special caching
+ modifications.
+ .
+ This package contains the static libraries and headers for developing
+ applications that use the CLucene search API.
+
+Package: libclucene-core1v5
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Pre-Depends: ${misc:Pre-Depends}
+Multi-Arch: same
+Conflicts: libclucene-core1
+Replaces: libclucene-core1
+Description: core library for full-featured text search engine (runtime)
+ CLucene is a C++ port of the popular Apache Lucene search engine
+ (http://lucene.apache.org/java). It is released under LGPL or the Apache
+ License.
+ .
+ CLucene aims to be a high-speed alternative to Java Lucene, its API is very
+ similar to that of the Java version. CLucene has recently been brought up to
+ date with Lucene 1.4.3. It contains most of the same functionality as the
+ Java version, except for Socket, Threading and the special caching
+ modifications.
+ .
+ This package contains the files necessary for running applications that
+ use the CLucene core and shared libraries.
+
+Package: libclucene-contribs1v5
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Pre-Depends: ${misc:Pre-Depends}
+Multi-Arch: same
+Conflicts: libclucene-contribs1
+Replaces: libclucene-contribs1
+Description: language specific text analyzers (runtime)
+ CLucene is a C++ port of the popular Apache Lucene search engine
+ (http://lucene.apache.org/java). It is released under LGPL or the Apache
+ License.
+ .
+ CLucene aims to be a high-speed alternative to Java Lucene, its API is very
+ similar to that of the Java version. CLucene has recently been brought up to
+ date with Lucene 1.4.3. It contains most of the same functionality as the
+ Java version, except for Socket, Threading and the special caching
+ modifications.
+ .
+ This package contains the files necessary for running applications that
+ use the CLucene contribs library (language specific text analyzers for
+ CLucene).

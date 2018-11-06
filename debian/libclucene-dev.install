@@ -1,0 +1,6 @@
+usr/include/CLucene
+usr/include/CLucene.h
+usr/lib/*/CLucene/CLuceneConfig.cmake
+usr/lib/*/CLucene/clucene-config.h
+usr/lib/*/libclucene-*.so
+usr/lib/*/pkgconfig/libclucene-core.pc

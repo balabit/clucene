@@ -1,0 +1,32 @@
+#!/usr/bin/make -f
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+DEB_HOST_MULTIARCH ?= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
+
+export CPPFLAGS:=$(shell dpkg-buildflags --get CPPFLAGS)
+export CFLAGS:=$(shell dpkg-buildflags --get CFLAGS)
+export CXXFLAGS:=$(shell dpkg-buildflags --get CXXFLAGS)
+export LDFLAGS:=$(shell dpkg-buildflags --get LDFLAGS)
+
+%:
+	dh $@ --list-missing --parallel
+
+override_dh_auto_configure:
+	dh_auto_configure -- \
+	-DBUILD_CONTRIBS_LIB=ON \
+	-DLIB_DESTINATION:PATH=/usr/lib/$(DEB_HOST_MULTIARCH) \
+	-DLUCENE_SYS_INCLUDES:PATH=/usr/lib/$(DEB_HOST_MULTIARCH)
+
+override_dh_makeshlibs:
+	dh_makeshlibs -V
+
+override_dh_auto_test:
+
+prune-nonfree:
+	# The copyright for the text of newswire articles and Reuters
+	# annotations in the Reuters-21578 collection resides with Reuters Ltd.
+	# Reuters Ltd. and Carnegie Group, Inc. have agreed to allow the free
+	# distribution of this data *for research purposes only*
+	rm -rf src/test/data/reuters*
