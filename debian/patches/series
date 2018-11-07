@@ -1,0 +1,7 @@
+Fixing_ZLIB_configuration_in_shared_CMakeLists.patch
+Fix-pkgconfig-file-by-adding-clucene-shared-library.patch
+Install-contribs-lib.patch
+multiarch.patch
+bug715474-no-boost-headers.patch
+bug718187-ftbfs-hurd.patch
+gcc-version.diff
