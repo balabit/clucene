@@ -1,0 +1,28 @@
+Description: add multiarch support.
+Author: Fathi Boudra <fabo@debian.org>
+
+---
+ CMakeLists.txt                    |    2 +-
+ src/core/libclucene-core.pc.cmake |    2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -94,7 +94,7 @@ SET(LUCENE_SYS_INCLUDES "" CACHE PATH
+       )
+ #install path options
+ SET(LIB_SUFFIX "" CACHE STRING "Define suffix of directory name (32/64)" )
+-SET(LIB_DESTINATION "lib${LIB_SUFFIX}")
++SET(LIB_DESTINATION "lib/${CMAKE_LIBRARY_ARCHITECTURE}")
+ 
+ 
+ SET ( ENABLE_COMPILE_TESTS_VALUE ON )
+--- a/src/core/libclucene-core.pc.cmake
++++ b/src/core/libclucene-core.pc.cmake
+@@ -7,5 +7,5 @@ Name: libclucene
+ Description: CLucene - a C++ search engine, ported from the popular Apache Lucene
+ Version: @CLUCENE_VERSION_MAJOR@.@CLUCENE_VERSION_MINOR@.@CLUCENE_VERSION_REVISION@.@CLUCENE_VERSION_PATCH@
+ Libs: -L${prefix}/@LIB_DESTINATION@/ -lclucene-core -lclucene-shared
+-Cflags: -I${prefix}/include -I${prefix}/include/CLucene/ext
++Cflags: -I${prefix}/include -I${prefix}/include/CLucene/ext -I${prefix}/@LIB_DESTINATION@
+ ~

@@ -1,0 +1,40 @@
+Description: FTBFS on Hurd
+Author: Pino Toscano <pino@debian.org>
+Bug: http://sourceforge.net/p/clucene/bugs/217/
+Bug-Debian: http://bugs.debian.org/718187
+
+---
+ src/shared/CLucene/util/Misc.cpp |    2 ++
+ src/shared/CLucene/util/Misc.h   |    2 ++
+ 2 files changed, 4 insertions(+)
+
+--- a/src/shared/CLucene/util/Misc.cpp
++++ b/src/shared/CLucene/util/Misc.cpp
+@@ -466,6 +466,7 @@ bool Misc::listFiles(const char* directo
+ std::string Misc::toString(const bool value){
+   return value ? "true" : "false";
+ }
++#ifndef __GNU__
+ std::string Misc::toString(_LUCENE_THREADID_TYPE value){
+   static int32_t nextindex = 0;
+   static std::map<_LUCENE_THREADID_TYPE, int32_t> ids;
+@@ -474,6 +475,7 @@ std::string Misc::toString(_LUCENE_THREA
+   }
+   return toString(ids[value]);
+ }
++#endif
+ std::string Misc::toString(const int32_t value){
+   char buf[20];
+   TCHAR tbuf[20];
+--- a/src/shared/CLucene/util/Misc.h
++++ b/src/shared/CLucene/util/Misc.h
+@@ -67,7 +67,9 @@ CL_NS_DEF(util)
+ 
+   static std::string toString(const int32_t value);
+   static std::string toString(const int64_t value);
++#ifndef __GNU__
+   static std::string toString(const _LUCENE_THREADID_TYPE value);
++#endif
+   static std::string toString(const bool value);
+   static std::string toString(const float_t value);
+   static std::string toString(const TCHAR* s, int32_t len=-1);

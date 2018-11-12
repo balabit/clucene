@@ -1,0 +1,42 @@
+Description: clucene-core contains boost headers under ext/boost.
+And clucene-core's pkgconfig file adds -I/usr/include/CLucene/ext to CFLAGS.
+This causes problems building packages that use both clucene-core and boost
+Depending on the header search order, including a boost header may actually
+result in getting one of the files in /usr/include/CLucene/ext/boost.
+Or this may happen several levels deep of nested boost includes.
+This patch drops boost from clucene-core.
+Author: Fathi Boudra <fabo@debian.org>
+Bug: http://bugs.debian.org/715474
+
+---
+ src/core/libclucene-core.pc.cmake |    4 ++--
+ src/ext/CMakeLists.txt            |    3 ---
+ 2 files changed, 2 insertions(+), 5 deletions(-)
+
+--- a/src/core/libclucene-core.pc.cmake
++++ b/src/core/libclucene-core.pc.cmake
+@@ -1,11 +1,11 @@
+ prefix=@CMAKE_INSTALL_PREFIX@
+ exec_prefix=${prefix}/bin
+ libdir=${prefix}/@LIB_DESTINATION@
+-includedir=${prefix}/include:${prefix}/include/CLucene/ext
++includedir=${prefix}/include
+ 
+ Name: libclucene
+ Description: CLucene - a C++ search engine, ported from the popular Apache Lucene
+ Version: @CLUCENE_VERSION_MAJOR@.@CLUCENE_VERSION_MINOR@.@CLUCENE_VERSION_REVISION@.@CLUCENE_VERSION_PATCH@
+ Libs: -L${prefix}/@LIB_DESTINATION@/ -lclucene-core -lclucene-shared
+-Cflags: -I${prefix}/include -I${prefix}/include/CLucene/ext -I${prefix}/@LIB_DESTINATION@
++Cflags: -I${prefix}/include -I${prefix}/@LIB_DESTINATION@
+ ~
+--- a/src/ext/CMakeLists.txt
++++ b/src/ext/CMakeLists.txt
+@@ -8,8 +8,5 @@ FOREACH(file ${EXTHEADERS})
+ 	get_filename_component(aname ${file} NAME)
+ 	file(RELATIVE_PATH relpath ${CMAKE_SOURCE_DIR}/src/ext/boost ${apath})
+ 	
+-	install(FILES ${file} 
+-	       DESTINATION "include/CLucene/ext/boost/${relpath}"
+-               COMPONENT development)
+ ENDFOREACH(file)
+ 
