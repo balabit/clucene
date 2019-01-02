@@ -1,3 +1,9 @@
+clucene (3.0.0-bb) bionic; urgency=low
+
+  * Bumping and postfixing version so it does not conflict with other builds.
+
+ -- Varga Peter Zoltan <peter.zoltan.varga@balabit.com>  Wed, 2 Jan 2019 13:30:00 +0100
+
 clucene (0.9.0) bionic; urgency=low
 
   * Init.
