@@ -1,3 +1,9 @@
+clucene (3.0.1-bb) bionic; urgency=low
+
+  * Added missing copyright.
+
+ -- Tamas Domok <Tamas.Domok@quest.com>  Wed, 20 Nov 2019 13:10:00 +0100
+
 clucene (3.0.0-bb) bionic; urgency=low
 
   * Bumping and postfixing version so it does not conflict with other builds.
