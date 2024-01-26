@@ -1,0 +1,4 @@
+Name: libclucene
+Description: CLucene - a C++ search engine, ported from the popular Apache Lucene
+
+Libs: -lclucene-core -lclucene-shared
